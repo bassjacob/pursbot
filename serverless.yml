@@ -1,0 +1,21 @@
+service: pursbot
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+
+stage: dev
+region: ap-southeast-2
+
+package:
+  include:
+    - lambda.js
+  exclude:
+    - node_modules
+functions:
+  hello:
+    handler: lambda.slack
+    events:
+      - http:
+          path: slack
+          method: post
